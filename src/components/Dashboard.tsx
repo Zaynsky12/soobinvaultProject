@@ -49,7 +49,7 @@ export function Dashboard() {
                     apiKey: process.env.NEXT_PUBLIC_SHELBY_API_KEY,
                 });
                 const blobs = await shelbyClient.coordination.getAccountBlobs({
-                    account: account.address,
+                    account: account.address.toString(),
                 });
                 if (isMounted) setAssets(blobs || []);
             } catch (error) {
