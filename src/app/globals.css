@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@theme inline {
+  --color-primary: #FBB3CC;
+  /* Sweet Pink */
+  --color-support: #B0A3A8;
+  /* Warm gray for text */
+  --color-accent: #E83A76;
+  /* Deep Pink accent */
+  --color-deep: #1A0D12;
+  /* Ultra dark pink-tinted background */
+  --color-clean: #FFFFFF;
+
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-plus-jakarta);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-deep);
+  color: var(--color-clean);
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.05em;
+  /* tracking-tighter */
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+.glass-panel {
+  @apply bg-[#111111]/60 backdrop-blur-2xl border border-white/5 shadow-2xl;
+}
+
+.premium-glass-border {
+  position: relative;
+}
+
+.premium-glass-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg,
+      rgba(251, 179, 204, 0.4),
+      rgba(255, 255, 255, 0.05) 40%,
+      rgba(232, 58, 118, 0.1) 60%,
+      rgba(232, 58, 118, 0.4));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(at 0% 0%, rgba(251, 179, 204, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(232, 58, 118, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(251, 179, 204, 0.08) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(244, 114, 182, 0.08) 0px, transparent 50%);
+  background-size: 100% 100%;
+}
+
+.glass-panel-curve {
+  @apply rounded-3xl overflow-hidden;
+}
+
+.glass-panel-curve-large {
+  @apply rounded-[2.5rem] overflow-hidden;
+}
