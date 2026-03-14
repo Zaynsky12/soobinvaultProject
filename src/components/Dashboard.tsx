@@ -6,23 +6,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Lock, FileText, Image as ImageIcon, Database, Link as LinkIcon, Download } from 'lucide-react';
 import { GlassCard } from './ui/GlassCard';
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
-import { ShelbyClient } from "@shelby-protocol/sdk/browser";
-import { Network } from "@aptos-labs/ts-sdk";
+import { useShelbyClient } from "@shelby-protocol/react";
 import { useState } from 'react';
 
-gsap.registerPlugin(ScrollTrigger);
-
-const getIconForType = (type: string) => {
-    switch (type) {
-        case 'image': return <ImageIcon className="text-color-accent" size={24} />;
-        case 'archive': return <Database className="text-[#FBB3CC]" size={24} />;
-        default: return <FileText className="text-color-primary" size={24} />;
-    }
-};
+// ... (existing code)
 
 export function Dashboard() {
     const containerRef = useRef<HTMLDivElement>(null);
     const { account } = useWallet();
+    const shelbyClient = useShelbyClient();
     const [assets, setAssets] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [keyMissing, setKeyMissing] = useState(false);
@@ -44,10 +36,6 @@ export function Dashboard() {
         const fetchBlobs = async () => {
             setIsLoading(true);
             try {
-                const shelbyClient = new ShelbyClient({
-                    network: Network.TESTNET,
-                    apiKey: process.env.NEXT_PUBLIC_SHELBY_API_KEY,
-                });
                 const blobs = await shelbyClient.coordination.getAccountBlobs({
                     account: account.address.toString(),
                 });
@@ -61,7 +49,7 @@ export function Dashboard() {
 
         fetchBlobs();
         return () => { isMounted = false; };
-    }, [account]);
+    }, [account, shelbyClient]);
 
     useEffect(() => {
         const ctx = gsap.context(() => {

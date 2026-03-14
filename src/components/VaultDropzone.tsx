@@ -17,12 +17,7 @@ export function VaultDropzone() {
     const [uploadState, setUploadState] = useState<'idle' | 'uploading' | 'success'>('idle');
     const [uploadStatusText, setUploadStatusText] = useState<string>("Encrypting and distributing to nodes...");
     
-    const shelbyClient = React.useMemo(() => new ShelbyClient({
-        network: Network.TESTNET,
-        apiKey: process.env.NEXT_PUBLIC_SHELBY_API_KEY,
-    }), []);
-
-    const uploadBlobs = useUploadBlobs({ client: shelbyClient });
+    const uploadBlobs = useUploadBlobs({});
 
     const dropzoneRef = useRef<HTMLDivElement>(null);
     const iconRef = useRef<HTMLDivElement>(null);
@@ -72,7 +67,7 @@ export function VaultDropzone() {
 
     const uploadToShelby = async (droppedFile: File) => {
         if (!account) {
-            alert("Please connect your Petra wallet first!");
+            alert("Please connect your Aptos wallet first!");
             return;
         }
 
@@ -95,7 +90,7 @@ export function VaultDropzone() {
 
             uploadBlobs.mutate({
                 signer: { 
-                    account: account.address as any, 
+                    account: account.address, 
                     signAndSubmitTransaction 
                 },
                 blobs: [{ blobName: droppedFile.name, blobData: fileData }],

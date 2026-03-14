@@ -4,23 +4,27 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "vercel-build": "npm install --legacy-peer-deps && next build"
+    "vercel-build": "npm install --legacy-peer-deps && next build --webpack"
   },
   "dependencies": {
-    "@aptos-labs/ts-sdk": "^5.2.1",
+    "@aptos-labs/ts-sdk": "5.2.1",
     "@aptos-labs/wallet-adapter-react": "^8.3.1",
+    "@aptos-labs/wallet-standard": "^1.0.0",
     "@shelby-protocol/react": "^1.0.3",
     "@shelby-protocol/sdk": "0.2.3",
     "@tanstack/react-query": "^5.90.21",
+    "@telegram-apps/bridge": "^1.4.1",
+    "@wallet-standard/base": "^1.0.1",
+    "@wallet-standard/core": "^1.0.3",
     "buffer": "^6.0.3",
     "clsx": "^2.1.1",
+    "got": "11.8.6",
     "gsap": "^3.14.2",
     "lucide-react": "^0.577.0",
     "next": "16.1.6",
-    "petra-plugin-wallet-adapter": "^0.4.5",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "tailwind-merge": "^3.5.0"
@@ -29,14 +33,13 @@
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
-    "typescript": "^5",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "typescript": "^5"
   },
   "overrides": {
-    "aptos": "^1.22.1",
-    "@aptos-labs/ts-sdk": "^5.2.1"
+    "@aptos-labs/ts-sdk": "5.2.1"
   }
 }

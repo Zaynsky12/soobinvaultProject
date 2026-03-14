@@ -1,8 +1,13 @@
-import { Hero } from "@/components/Hero";
+"use client";
+
+import dynamic from "next/dynamic";
 import { Features } from "@/components/Features";
 import { Protocol } from "@/components/Protocol";
-import { VaultDropzone } from "@/components/VaultDropzone";
-import { Dashboard } from "@/components/Dashboard";
+
+// Dynamic imports with SSR disabled for components using Aptos/Shelby SDKs
+const Hero = dynamic(() => import("@/components/Hero").then(mod => mod.Hero), { ssr: false });
+const VaultDropzone = dynamic(() => import("@/components/VaultDropzone").then(mod => mod.VaultDropzone), { ssr: false });
+const Dashboard = dynamic(() => import("@/components/Dashboard").then(mod => mod.Dashboard), { ssr: false });
 
 export default function Home() {
   return (

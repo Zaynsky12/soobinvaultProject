@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { WalletProvider } from "@/components/WalletProvider";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { ClientProviders } from "@/components/ClientProviders";
 
 // Font configurations
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -36,13 +34,9 @@ export default function RootLayout({
           </svg>
         </div>
 
-        <WalletProvider>
-          <Navbar />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </WalletProvider>
+        <ClientProviders>
+          {children}
+        </ClientProviders>
       </body>
     </html>
   );
